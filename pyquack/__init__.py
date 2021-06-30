@@ -23,6 +23,10 @@ SOFTWARE.
 """
 from .response import QueryResult as QueryResult
 from .sync import Client as Client
-from ._async import AsyncClient as AsyncClient
 
-__version__ = "0.1.0"
+try:
+    from ._async import AsyncClient as AsyncClient
+except ValueError:  # raised by _async when aiohttp is not present
+    pass
+
+__version__ = "0.1.1"

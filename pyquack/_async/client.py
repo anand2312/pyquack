@@ -34,7 +34,7 @@ from pyquack import QueryResult
 from pyquack.response import _parse_response
 
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 
 class AsyncClient:
