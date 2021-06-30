@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "pyquack"
+version = "0.1.0"
+description = "Simple Python sync/async duckduckgo wrapper."
+authors = ["anand2312 <anandkrishna2312@gmail.com>"]
+license = "MIT"
+homepage = "https://anand2312.tech/pyquack"
+documentation = "https://anand2312.tech/pyquack"
+repository = "https://github.com/anand2312/pyquack"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.25.1"
+aiohttp = {version = "^3.7.4", optional = true}
+
+[tool.poetry.dev-dependencies]
+black = "^21.6b0"
+pre-commit = "^2.13.0"
+mkdocs-material = "^7.1.9"
+mkdocstrings = "^0.15.2"
+
+[tool.poetry.extras]
+async = ["aiohttp"]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,25 @@
+site_name: pyquack
+site_description: Simple Python sync/async duckduckgo wrapper.
+site_author: Anand Krishna
+site_url: https://anand2312.tech/pyquack
+
+theme:
+  name: material
+
+repo_name: anand2312/pyquack
+repo_url: https://github.com/anand2312/pyquack
+edit_uri: edit/main/docs/
+
+nav:
+  - Home: index.md
+
+plugins:
+- search
+- mkdocstrings
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: "#"
+  - pymdownx.highlight
+  - pymdownx.superfences
