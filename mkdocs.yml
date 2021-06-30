@@ -5,6 +5,15 @@ site_url: https://anand2312.tech/pyquack
 
 theme:
   name: material
+  palette:
+    - scheme: slate
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to light mode
+    - scheme: default
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
 
 repo_name: anand2312/pyquack
 repo_url: https://github.com/anand2312/pyquack
@@ -12,6 +21,9 @@ edit_uri: edit/main/docs/
 
 nav:
   - Home: index.md
+  - Quickstart: quickstart.md
+  - API Reference: api_reference.md
+  - Models: models.md
 
 plugins:
 - search
@@ -19,6 +31,7 @@ plugins:
 
 markdown_extensions:
   - admonition
+  - meta
   - toc:
       permalink: "#"
   - pymdownx.highlight
