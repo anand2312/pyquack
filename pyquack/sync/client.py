@@ -40,6 +40,14 @@ class Client:
     def __init__(
         self, *, safesearch: bool = True, html: bool = False, meanings: bool = True
     ) -> None:
+        """
+        Initialize the client.
+
+        Arguments:
+            safesearch: Whether safesearch should be enabled.
+            html: Whether there should be HTML in the API response.
+            meanings: Whether to include disambiguations.
+        """
         self.session = requests.Session()
         self.session.headers.update({"User-Agent": f"pyquack {__version__}"})
 
@@ -47,17 +55,13 @@ class Client:
         self._html = html
         self._meanings = meanings
 
-    def params(self, query: str) -> dict:
-        """
-        Prepares the parameters that are sent with the request.
-        """
-
+    def _params(self, query: str) -> dict:
         return {
             "q": query,
             "format": "json",
             "no_html": "0" if self._html else "1",
             "no_redirect": "1",
-            "meanings": "0" if self._meanings else "1",
+            "d": "0" if self._meanings else "1",
             "kp": "1" if self._safesearch else "-1",
         }
 
@@ -71,7 +75,7 @@ class Client:
         Returns:
             `pyquack.Response`
         """
-        params = self.params(_query)
+        params = self._params(_query)
         r = self.session.get(Client.BASE_API_URL, params=params)
 
         return _parse_response(r.json())

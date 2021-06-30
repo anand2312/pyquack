@@ -47,23 +47,27 @@ class AsyncClient:
     def __init__(
         self, *, safesearch: bool = True, html: bool = False, meanings: bool = True
     ) -> None:
+        """
+        Initialize the client.
+
+        Arguments:
+            safesearch: Whether safesearch should be enabled.
+            html: Whether there should be HTML in the API response.
+            meanings: Whether to include disambiguations.
+        """
         self.session = None  # will be initialized on first request
 
         self._safesearch = safesearch
         self._html = html
         self._meanings = meanings
 
-    def params(self, query: str) -> dict:
-        """
-        Prepares the parameters that are sent with the request.
-        """
-
+    def _params(self, query: str) -> dict:
         return {
             "q": query,
             "format": "json",
             "no_html": "0" if self._html else "1",
             "no_redirect": "1",
-            "meanings": "0" if self._meanings else "1",
+            "d": "0" if self._meanings else "1",
             "kp": "1" if self._safesearch else "-1",
         }
 
@@ -84,7 +88,7 @@ class AsyncClient:
                 headers={"User-Agent": f"pyquack {__version__}"}
             )
 
-        params = self.params(_query)
+        params = self._params(_query)
 
         async with self.session.get(AsyncClient.BASE_API_URL, params=params) as resp:
             text = await resp.text()
