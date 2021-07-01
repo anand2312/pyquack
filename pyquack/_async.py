@@ -30,11 +30,10 @@ except ImportError:
         "aiohttp is not installed. Install pyqyack with the `async` optional as well."
     )
 
-from pyquack import QueryResult
-from pyquack.response import _parse_response
+from .models import _parse_response, QueryResult
 
 
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 
 
 class AsyncClient:
