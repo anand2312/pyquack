@@ -23,6 +23,7 @@ SOFTWARE.
 """
 from .models import QueryResult as QueryResult
 from .sync import Client as Client
+from .sync import query as query
 
 try:
     from ._async import AsyncClient as AsyncClient
