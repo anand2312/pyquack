@@ -26,7 +26,7 @@ import requests
 from .models import _parse_response, QueryResult
 
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 
 class Client:
