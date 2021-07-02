@@ -22,4 +22,52 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-from .client import Client as Client
+import argparse
+
+from pyquack import __version__
+from .sync import Client, query
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument(
+    "query",
+    help="Search a specific query on duckduckgo. Enter 'repl' to start a REPL session.",
+)
+
+args = parser.parse_args()
+
+
+if args.query == "repl":
+    client = Client()
+    print(
+        f"pyquack {__version__}\nType your search queries in.\nEnter 'exit' or CTRL + C to exit."
+    )
+
+    while True:
+        try:
+            query = input(">>> ")
+        except KeyboardInterrupt:
+            break
+
+        if query.lower().strip() == "exit":
+            break
+
+        response = client.query(query)
+
+        print(response.abstract)
+        print(response.answer)
+
+        for i in response.results:
+            print(i)
+
+        print(f"Result type: {response.type}")
+else:
+    response = query(args.query)
+
+    print(response.abstract)
+    print(response.answer)
+
+    for i in response.results:
+        print(i)
+
+    print(f"Result type: {response.type}")

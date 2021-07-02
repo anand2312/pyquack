@@ -9,3 +9,8 @@
     rendering:
         show_root_heading: true
         show_source: false
+
+::: pyquack.query
+    rendering:
+        show_root_heading: true
+        show_source: false

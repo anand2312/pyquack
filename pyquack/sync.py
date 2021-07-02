@@ -23,11 +23,10 @@ SOFTWARE.
 """
 import requests
 
-from pyquack import QueryResult
-from pyquack.response import _parse_response
+from .models import _parse_response, QueryResult
 
 
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 
 
 class Client:
@@ -73,9 +72,39 @@ class Client:
             _query: The query to be searched.
 
         Returns:
-            `pyquack.Response`
+            [`QueryResult`](/pyquack/models/#pyquackresponsequeryresult) object containing the parsed API response.
         """
         params = self._params(_query)
         r = self.session.get(Client.BASE_API_URL, params=params)
 
         return _parse_response(r.json())
+
+
+def query(
+    _query: str, *, safesearch: bool = True, html: bool = False, meanings: bool = True
+) -> QueryResult:
+    """
+    Function to make a one-off search query.
+
+    !!! warning
+        If you expect to be making many queries, use [`pyquack.Client`](/pyquack/api_reference/#pyquack.sync.Client) instead.
+        `pyquack.Client` uses `requests.Session` internally, giving improved performance for multiple queries.
+    Arguments:
+        _query: The query to be searched.
+
+    Returns:
+        [`QueryResult`](/pyquack/models/#pyquackresponsequeryresult) object containing the parsed API response.
+    """
+
+    params = {
+        "q": _query,
+        "format": "json",
+        "no_html": "0" if html else "1",
+        "no_redirect": "1",
+        "d": "0" if meanings else "1",
+        "kp": "1" if safesearch else "-1",
+    }
+
+    r = requests.get(Client.BASE_API_URL, params=params)
+
+    return _parse_response(r.json())

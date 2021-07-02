@@ -21,12 +21,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
-from .response import QueryResult as QueryResult
+from .models import QueryResult as QueryResult
 from .sync import Client as Client
+from .sync import query as query
 
 try:
     from ._async import AsyncClient as AsyncClient
+
+    # from ._async import query as query
 except ValueError:  # raised by _async when aiohttp is not present
     pass
 
-__version__ = "0.1.1"
+__version__ = "0.2.0"

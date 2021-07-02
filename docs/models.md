@@ -1,6 +1,6 @@
 # Models
 
-All models are based on the raw API response itself sent. Refer https://duckduckgo.com/api for more details.
+All models are based on the raw API response itself sent. Refer [DuckDuckGo API page](https://duckduckgo.com/api) for more details.
 
 ## pyquack.response.QueryResult
 
