@@ -27,6 +27,8 @@ from .sync import query as query
 
 try:
     from ._async import AsyncClient as AsyncClient
+
+    # from ._async import query as query
 except ValueError:  # raised by _async when aiohttp is not present
     pass
 
