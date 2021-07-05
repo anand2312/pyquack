@@ -3,7 +3,7 @@
 
 Simple Python sync/async duckduckgo API wrapper.
 
-[Documentation](https://anand2312.tech/pyquack)
+[Documentation](https://pyquack.anand2312.tech)
 
 ## Quickstart
 
