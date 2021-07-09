@@ -26,6 +26,12 @@ response = client.query("DuckDuckGo")
 print(response.results)
 print(response.definition)
 ```
+For one-off queries,
+```py
+import pyquack
+
+response = pyquack.query("DuckDuckGo")
+```
 
 For all of the available attributes on the `response` object, refer [Models](models.md#QueryResult)
 
@@ -45,6 +51,12 @@ async def main() -> None:
     print(response.definition)
 
 asyncio.run(main())
+```
+
+### CLI
+Pyquack also offers a CLI.
+```
+python -m pyquack
 ```
 
 ## Contact
