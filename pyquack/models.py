@@ -133,7 +133,7 @@ def _parse_response(resp: dict) -> QueryResult:
         Result(
             first_url=i.get("FirstURL"),
             text=i.get("Text"),
-            icon=_parse_icon(i.get("Icon")),
+            icon=_parse_icon(i.get("Icon", {})),
         )
         for i in resp.get("Results", [])
     ]
